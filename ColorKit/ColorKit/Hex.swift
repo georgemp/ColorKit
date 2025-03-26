@@ -6,10 +6,14 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
-extension UIColor {
-    
+extension PlatformColor {
+
     /// Convenience initializer with hexadecimal values.
     public convenience init?(hex: String) {
         let hexString = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

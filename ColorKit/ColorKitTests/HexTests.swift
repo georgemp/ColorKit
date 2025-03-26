@@ -20,7 +20,7 @@ class HexTests: XCTestCase {
     // Init
     
     func testInitBlack() {
-        let color = UIColor(hex: blackHex)!
+        let color = PlatformColor(hex: blackHex)!
         XCTAssertEqual(color.red, 0)
         XCTAssertEqual(color.green, 0)
         XCTAssertEqual(color.blue, 0)
@@ -28,7 +28,7 @@ class HexTests: XCTestCase {
     }
     
     func testInitWhite() {
-        let color = UIColor(hex: whiteHex)!
+        let color = PlatformColor(hex: whiteHex)!
         XCTAssertEqual(color.red, 1)
         XCTAssertEqual(color.green, 1)
         XCTAssertEqual(color.blue, 1)
@@ -36,7 +36,7 @@ class HexTests: XCTestCase {
     }
     
     func testInitRed() {
-        let color = UIColor(hex: redHex)!
+        let color = PlatformColor(hex: redHex)!
         XCTAssertEqual(color.red, 255.0 / 255.0)
         XCTAssertEqual(color.green, 0.0 / 255.0)
         XCTAssertEqual(color.blue, 0.0 / 255.0)
@@ -44,7 +44,7 @@ class HexTests: XCTestCase {
     }
     
     func testInitDarkGreen() {
-        let color = UIColor(hex: darkGreen)!
+        let color = PlatformColor(hex: darkGreen)!
         XCTAssertEqual(color.red, 50.0 / 255.0)
         XCTAssertEqual(color.green, 168.0 / 255.0)
         XCTAssertEqual(color.blue, 82.0 / 255.0)
@@ -52,7 +52,7 @@ class HexTests: XCTestCase {
     }
     
     func testInitLightGreen() {
-        let color = UIColor(hex: lightGreen)!
+        let color = PlatformColor(hex: lightGreen)!
         XCTAssertEqual(color.red, 67.0 / 255.0)
         XCTAssertEqual(color.green, 255.0 / 255.0)
         XCTAssertEqual(color.blue, 100.0 / 255.0)
@@ -62,22 +62,22 @@ class HexTests: XCTestCase {
     // hex
     
     func testHexBlack() {
-        let color = UIColor.black
+        let color = PlatformColor.black
         XCTAssertEqual(color.hex, blackHex)
     }
     
     func testHexWhite() {
-        let color = UIColor.white
+        let color = PlatformColor.white
         XCTAssertEqual(color.hex, whiteHex)
     }
     
     func testHexRed() {
-        let color = UIColor.red
+        let color = PlatformColor.red
         XCTAssertEqual(color.hex, redHex)
     }
     
     func testHexDarkGreen() {
-        let color = UIColor(red: 50.0 / 255.0, green: 168.0 / 255.0, blue: 82.0 / 255.0, alpha: 1.0)
+        let color = PlatformColor(red: 50.0 / 255.0, green: 168.0 / 255.0, blue: 82.0 / 255.0, alpha: 1.0)
         XCTAssertEqual(color.hex, darkGreen)
     }
     

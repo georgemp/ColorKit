@@ -2,7 +2,7 @@
 
 <p align="center"><img src="Assets/colorkit_banner.jpg"/></p>
 
-**ColorKit** is your companion to work with colors on iOS.
+**ColorKit** is your companion to work with colors on UIKit and AppKit.
 
 <p align="center">
     <a href="LICENSE">

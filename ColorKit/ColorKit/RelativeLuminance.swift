@@ -6,9 +6,13 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
-extension UIColor {
+extension PlatformColor {
     
     /// Computes the relative luminance of the color.
     /// This assume that the color is using the sRGB color space.

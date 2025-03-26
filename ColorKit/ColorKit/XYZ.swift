@@ -6,7 +6,11 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
 struct XYZ {
     let X: CGFloat
@@ -38,7 +42,7 @@ struct XYZCalculator {
     
 }
 
-extension UIColor {
+extension PlatformColor {
     
     /// The X value of the XYZ color space.
     public var X: CGFloat {

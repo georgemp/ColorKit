@@ -40,13 +40,13 @@ class PaletteTests: XCTestCase {
     }
     
     func testCloseColors() {
-        XCTAssertNil(ColorPalette(colors: [.blue, UIColor(red: 0, green: 0, blue: 0.8, alpha: 1.0)]))
+        XCTAssertNil(ColorPalette(colors: [.blue, PlatformColor(red: 0, green: 0, blue: 0.8, alpha: 1.0)]))
     }
     
     func testRealUseCase() {
-        let darkBlue = UIColor(red: 0.0 / 255.0, green: 120.0 / 255.0, blue: 190.0 / 255.0, alpha: 1.0)
-        let brightBlue = UIColor(red: 110.0 / 255.0, green: 178.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
-        let orange = UIColor(red: 203.0 / 255.0, green: 179.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0)
+        let darkBlue = PlatformColor(red: 0.0 / 255.0, green: 120.0 / 255.0, blue: 190.0 / 255.0, alpha: 1.0)
+        let brightBlue = PlatformColor(red: 110.0 / 255.0, green: 178.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+        let orange = PlatformColor(red: 203.0 / 255.0, green: 179.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0)
         let colorPalette = ColorPalette(colors: [darkBlue, brightBlue, orange], ignoreContrastRatio: true)
         XCTAssertEqual(colorPalette?.background, darkBlue)
         XCTAssertEqual(colorPalette?.primary, orange)
@@ -54,9 +54,9 @@ class PaletteTests: XCTestCase {
     }
     
     func testRealUseCase2() {
-        let red = UIColor(red: 255.0 / 255.0, green: 21.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
-        let darkBlue = UIColor(red: 76.0 / 255.0, green: 101.0 / 255.0, blue: 122.0 / 255.0, alpha: 1.0)
-        let white = UIColor.white
+        let red = PlatformColor(red: 255.0 / 255.0, green: 21.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
+        let darkBlue = PlatformColor(red: 76.0 / 255.0, green: 101.0 / 255.0, blue: 122.0 / 255.0, alpha: 1.0)
+        let white = PlatformColor.white
         let colorPalette = ColorPalette(colors: [red, darkBlue, white], darkBackground: false)
         XCTAssertEqual(colorPalette?.background, white)
         XCTAssertEqual(colorPalette?.primary, darkBlue)
@@ -99,13 +99,13 @@ class PaletteTests: XCTestCase {
     }
 
     func testCloseOrderedColors() {
-        XCTAssertNil(ColorPalette(orderedColors: [.blue, UIColor(red: 0, green: 0, blue: 0.8, alpha: 1.0)]))
+        XCTAssertNil(ColorPalette(orderedColors: [.blue, PlatformColor(red: 0, green: 0, blue: 0.8, alpha: 1.0)]))
     }
 
     func testRealUseCaseOrdered() {
-        let darkBlue = UIColor(red: 0.0 / 255.0, green: 120.0 / 255.0, blue: 190.0 / 255.0, alpha: 1.0)
-        let brightBlue = UIColor(red: 110.0 / 255.0, green: 178.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
-        let orange = UIColor(red: 203.0 / 255.0, green: 179.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0)
+        let darkBlue = PlatformColor(red: 0.0 / 255.0, green: 120.0 / 255.0, blue: 190.0 / 255.0, alpha: 1.0)
+        let brightBlue = PlatformColor(red: 110.0 / 255.0, green: 178.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+        let orange = PlatformColor(red: 203.0 / 255.0, green: 179.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0)
         let colorPalette = ColorPalette(orderedColors: [darkBlue, brightBlue, orange], ignoreContrastRatio: true)
         XCTAssertEqual(colorPalette?.background, darkBlue)
         XCTAssertEqual(colorPalette?.primary, brightBlue)
@@ -113,9 +113,9 @@ class PaletteTests: XCTestCase {
     }
 
     func testRealUseCase2Ordered() {
-        let red = UIColor(red: 255.0 / 255.0, green: 21.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
-        let darkBlue = UIColor(red: 76.0 / 255.0, green: 101.0 / 255.0, blue: 122.0 / 255.0, alpha: 1.0)
-        let white = UIColor.white
+        let red = PlatformColor(red: 255.0 / 255.0, green: 21.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
+        let darkBlue = PlatformColor(red: 76.0 / 255.0, green: 101.0 / 255.0, blue: 122.0 / 255.0, alpha: 1.0)
+        let white = PlatformColor.white
         let colorPalette = ColorPalette(orderedColors: [red, darkBlue, white], darkBackground: false)
         XCTAssertEqual(colorPalette?.background, red)
         XCTAssertEqual(colorPalette?.primary, white)

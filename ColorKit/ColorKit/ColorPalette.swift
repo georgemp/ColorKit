@@ -6,20 +6,25 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
+
 
 /// A simple structure used to represent color palettes.
 public struct ColorPalette {
     
     /// The color that should be used as a background.
-    public let background: UIColor
-    
+    public let background: PlatformColor
+
     /// The color that should be used as the primary detail. For example the main text.
-    public let primary: UIColor
-    
+    public let primary: PlatformColor
+
     /// The color that should be used as the secondary detail. For example text that isn't as important as the one represented by the primary property.
-    public let secondary: UIColor?
-    
+    public let secondary: PlatformColor?
+
     /// Initializes a coherant color palette based on the passed in colors.
     /// The colors should be sorted by order of importance, where the first color is the most important.
     /// This makes it easy to generate palettes from a collection of colors.
@@ -28,12 +33,12 @@ public struct ColorPalette {
     ///   - orderedColors: The colors that will be used to generate the color palette. The first color is considered the most important one.
     ///   - darkBackground: Whether the color palette is required to have a dark background. If set to false, the background can be dark or bright.
     ///   - ignoreContrastRatio: Whether the color paletter should ignore the contrast ratio between the different colors. It is recommended to set this value to `false` (default) if the color paletter will be used to display text.
-    public init?(orderedColors: [UIColor], darkBackground: Bool = true, ignoreContrastRatio: Bool = false) {
+    public init?(orderedColors: [PlatformColor], darkBackground: Bool = true, ignoreContrastRatio: Bool = false) {
         guard orderedColors.count > 1 else {
             return nil
         }
         
-        var backgroundColor: UIColor
+        var backgroundColor: PlatformColor
         if darkBackground {
             guard let darkestOrderedColor = orderedColors.first(where: { color -> Bool in
                 return color.relativeLuminance < 0.5
@@ -45,8 +50,8 @@ public struct ColorPalette {
             backgroundColor = orderedColors.first!
         }
         
-        var primaryColor: UIColor?
-        var secondaryColor: UIColor?
+        var primaryColor: PlatformColor?
+        var secondaryColor: PlatformColor?
         if !ignoreContrastRatio {
             orderedColors.forEach { (color) in
                 guard color != backgroundColor else { return }
@@ -87,13 +92,13 @@ public struct ColorPalette {
     ///   - colors: The colors that will be used to generate the color palette. The best colors will be selected to have a color palette with enough contrast. At least two colors should be passed in.
     ///   - darkBackground: Whether the color palette is required to have a dark background. If set to false, the background can be dark or bright.
     ///   - ignoreContrastRatio: Whether the color paletter should ignore the contrast ratio between the different colors. It is recommended to set this value to `false` (default) if the color paletter will be used to display text.
-    public init?(colors: [UIColor], darkBackground: Bool = true, ignoreContrastRatio: Bool = false) {
+    public init?(colors: [PlatformColor], darkBackground: Bool = true, ignoreContrastRatio: Bool = false) {
         guard colors.count > 1 else {
             return nil
         }
         
-        var darkestColor: UIColor?
-        var brightestColor: UIColor?
+        var darkestColor: PlatformColor?
+        var brightestColor: PlatformColor?
         
         colors.forEach { (color) in
             if color.relativeLuminance < darkestColor?.relativeLuminance ?? .greatestFiniteMagnitude {

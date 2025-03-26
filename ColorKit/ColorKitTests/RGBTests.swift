@@ -12,7 +12,7 @@ import XCTest
 class RGBTests: XCTestCase {
     
     func testRed() {
-        let red = UIColor.red
+        let red = PlatformColor.red
         XCTAssertEqual(red.red, 1.0)
         XCTAssertEqual(red.green, 0.0)
         XCTAssertEqual(red.blue, 0.0)
@@ -20,7 +20,7 @@ class RGBTests: XCTestCase {
     }
     
     func testGreen() {
-        let green = UIColor.green
+        let green = PlatformColor.green
         XCTAssertEqual(green.red, 0.0)
         XCTAssertEqual(green.green, 1.0)
         XCTAssertEqual(green.blue, 0.0)
@@ -28,7 +28,7 @@ class RGBTests: XCTestCase {
     }
 
     func testBlue() {
-        let blue = UIColor.blue
+        let blue = PlatformColor.blue
         XCTAssertEqual(blue.red, 0.0)
         XCTAssertEqual(blue.green, 0.0)
         XCTAssertEqual(blue.blue, 1.0)
@@ -36,7 +36,7 @@ class RGBTests: XCTestCase {
     }
     
     func testWhite() {
-        let blue = UIColor.white
+        let blue = PlatformColor.white
         XCTAssertEqual(blue.red, 1.0)
         XCTAssertEqual(blue.green, 1.0)
         XCTAssertEqual(blue.blue, 1.0)
@@ -44,7 +44,7 @@ class RGBTests: XCTestCase {
     }
     
     func testBlack() {
-        let blue = UIColor.black
+        let blue = PlatformColor.black
         XCTAssertEqual(blue.red, 0.0)
         XCTAssertEqual(blue.green, 0.0)
         XCTAssertEqual(blue.blue, 0.0)
@@ -52,7 +52,7 @@ class RGBTests: XCTestCase {
     }
     
     func testGray() {
-        let blue = UIColor.gray
+        let blue = PlatformColor.gray
         XCTAssertEqual(blue.red, 0.5)
         XCTAssertEqual(blue.green, 0.5)
         XCTAssertEqual(blue.blue, 0.5)
@@ -60,7 +60,7 @@ class RGBTests: XCTestCase {
     }
     
     func testPurple() {
-        let blue = UIColor.purple
+        let blue = PlatformColor.purple
         XCTAssertEqual(blue.red, 0.5)
         XCTAssertEqual(blue.green, 0.0)
         XCTAssertEqual(blue.blue, 0.5)

@@ -13,7 +13,7 @@ class DominantColorQualityTests: XCTestCase {
     
     /// It should return the exact same size (original size) if the quality is set to best.
     func testBestQuality() {
-        let quality = UIImage.DominantColorQuality.best
+        let quality = PlatformImage.DominantColorQuality.best
         let originalSize = CGSize(width: CGFloat.random(in: 0...10000), height: CGFloat.random(in: 0...10000))
         let targetSize = quality.targetSize(for: originalSize)
         
@@ -22,7 +22,7 @@ class DominantColorQualityTests: XCTestCase {
     
     /// It should return the exact same size (original size) if the original size is smaller than the size we're trying to reach.
     func testLowerArea() {
-        let quality = UIImage.DominantColorQuality.fair
+        let quality = PlatformImage.DominantColorQuality.fair
         let originalSize = CGSize(width: 1, height: 1)
         let targetSize = quality.targetSize(for: originalSize)
         

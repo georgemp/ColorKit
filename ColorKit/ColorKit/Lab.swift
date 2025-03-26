@@ -6,7 +6,12 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
+
 
 struct Lab {
     let L: CGFloat
@@ -46,7 +51,7 @@ struct LabCalculator {
     }
 }
 
-extension UIColor {
+extension PlatformColor {
     
     /// The L* value of the CIELAB color space.
     /// L* represents the lightness of the color from 0 (black) to 100 (white).

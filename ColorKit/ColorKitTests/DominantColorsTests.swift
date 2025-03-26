@@ -12,12 +12,11 @@ import XCTest
 class DominantColorsTests: XCTestCase {
     
     func testGreenImage() throws {
-        let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "Green_Square.jpg", in: bundle, compatibleWith: nil)!
+        let image = loadImage(named: "Green_Square.jpg")
         let dominantColors = try image.dominantColorFrequencies(with: .best)
         
         XCTAssertEqual(dominantColors.count, 1)
-        guard let distance = dominantColors.first?.color.difference(from: UIColor.green) else {
+        guard let distance = dominantColors.first?.color.difference(from: PlatformColor.green) else {
             XCTFail("Could not get distance from dominant color.")
             return
         }
@@ -26,14 +25,13 @@ class DominantColorsTests: XCTestCase {
     }
     
     func testBlackWhiteImage() throws {
-        let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "Black_White_Square.jpg", in: bundle, compatibleWith: nil)!
+        let image = loadImage(named: "Black_White_Square.jpg")
         let colorFrequencies = try image.dominantColorFrequencies(with: .best)
         let dominantColors = colorFrequencies.map({ $0.color })
 
         XCTAssertEqual(dominantColors.count, 2)
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 0, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 1, green: 1, blue: 1, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 0, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 1, green: 1, blue: 1, alpha: 1)))
         verifySorted(colorsFrequencies: colorFrequencies)
         
         XCTAssertEqual(colorFrequencies.first?.frequency, 0.5)
@@ -41,41 +39,38 @@ class DominantColorsTests: XCTestCase {
     }
     
     func testRedBlueGreenImage() throws {
-        let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "Red_Green_Blue.png", in: bundle, compatibleWith: nil)!
+        let image = loadImage(named: "Red_Green_Blue.png")
         let colorFrequencies = try image.dominantColorFrequencies(with: .best)
         let dominantColors = colorFrequencies.map({ $0.color })
 
         XCTAssertEqual(dominantColors.count, 3)
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 1, green: 0, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 1, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 0, blue: 1, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 1, green: 0, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 1, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 0, blue: 1, alpha: 1)))
         verifySorted(colorsFrequencies: colorFrequencies)
     }
     
     func testRedBlueGreenBlack() throws {
-        let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "Red_Green_Blue_Black_Mini.png", in: bundle, compatibleWith: nil)!
+        let image = loadImage(named: "Red_Green_Blue_Black_Mini.png")
         let colorFrequencies = try image.dominantColorFrequencies(with: .best)
         let dominantColors = colorFrequencies.map({ $0.color })
 
         XCTAssertEqual(dominantColors.count, 4)
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 0, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 1, green: 0, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 1, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 0, blue: 1, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 0, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 1, green: 0, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 1, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 0, blue: 1, alpha: 1)))
         verifySorted(colorsFrequencies: colorFrequencies)
     }
     
     func testRedBlueGreenRandom() throws {
-        let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "Red_Green_Blue_Random_Mini.png", in: bundle, compatibleWith: nil)!
+        let image = loadImage(named: "Red_Green_Blue_Random_Mini.png")
         let colorFrequencies = try image.dominantColorFrequencies(with: .best)
         let dominantColors = colorFrequencies.map({ $0.color })
         
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 1, green: 0, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 1, blue: 0, alpha: 1)))
-        XCTAssertTrue(dominantColors.contains(UIColor(red: 0, green: 0, blue: 1, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 1, green: 0, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 1, blue: 0, alpha: 1)))
+        XCTAssertTrue(dominantColors.contains(PlatformColor(red: 0, green: 0, blue: 1, alpha: 1)))
         verifySorted(colorsFrequencies: colorFrequencies)
     }
     

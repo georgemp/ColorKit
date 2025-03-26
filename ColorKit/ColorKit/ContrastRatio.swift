@@ -6,10 +6,15 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
-extension UIColor {
-    
+
+extension PlatformColor {
+
     /// An enumeration which groups contrast ratios based on their readability.
     /// This follows the  Web Content Accessibility Guidelines (WCAG) 2.0.
     public enum ContrastRatioResult {
@@ -48,7 +53,7 @@ extension UIColor {
     
     /// Computes the contrast ratio between the current color instance, and the one passed in.
     /// Contrast ratios can range from 1 to 21 (commonly written 1:1 to 21:1).
-    public func contrastRatio(with color: UIColor) -> ContrastRatioResult {
+    public func contrastRatio(with color: PlatformColor) -> ContrastRatioResult {
         let l1 = max(color.relativeLuminance, relativeLuminance)
         let l2 = min(color.relativeLuminance, relativeLuminance)
 

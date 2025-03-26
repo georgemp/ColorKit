@@ -6,7 +6,11 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
 struct RGB {
     let R: CGFloat
@@ -14,28 +18,28 @@ struct RGB {
     let B: CGFloat
 }
 
-extension UIColor {
+extension PlatformColor {
     
-    // MARK: - Pulic
-    
+    // MARK: - Public
+
     /// The red (R) channel of the RGB color space as a value from 0.0 to 1.0.
     public var red: CGFloat {
-        CIColor(color: self).red
+        ciColor.red
     }
     
     /// The green (G) channel of the RGB color space as a value from 0.0 to 1.0.
     public var green: CGFloat {
-        CIColor(color: self).green
+        ciColor.green
     }
     
     /// The blue (B) channel of the RGB color space as a value from 0.0 to 1.0.
     public var blue: CGFloat {
-        CIColor(color: self).blue
+        ciColor.blue
     }
     
     /// The alpha (a) channel of the RGBa color space as a value from 0.0 to 1.0.
     public var alpha: CGFloat {
-        CIColor(color: self).alpha
+        ciColor.alpha
     }
     
     // MARK: Internal

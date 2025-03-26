@@ -6,10 +6,14 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 
-extension UIColor {
-    
+extension PlatformColor {
+
     /// The cyan (C) channel of the CMYK color space.
     public var cyan: CGFloat {
         return (1 - red - key) / (1 - key)

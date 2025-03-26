@@ -7,28 +7,29 @@
 //
 
 import XCTest
+@testable import ColorKit
 
 class LabTests: XCTestCase {
 
     func testGreen() {
-        let color = UIColor.green
-        
+        let color = PlatformColor.green
+
         XCTAssertEqual(color.L, 87.74)
         XCTAssertEqual(color.a, -86.18)
         XCTAssertEqual(color.b, 83.18)
     }
     
     func testWhite() {
-        let color = UIColor.white
-        
+        let color = PlatformColor.white
+
         XCTAssertEqual(color.L, 100.0)
         XCTAssertEqual(color.a, 0.01)
         XCTAssertEqual(color.b, -0.01)
     }
     
     func testArbitrary() {
-        let color = UIColor(red: 129.0 / 255.0, green: 200.0 / 255.0, blue: 10.0 / 255.0, alpha: 1.0)
-        
+        let color = PlatformColor(red: 129.0 / 255.0, green: 200.0 / 255.0, blue: 10.0 / 255.0, alpha: 1.0)
+
         XCTAssertEqual(color.L, 73.55)
         XCTAssertEqual(color.a, -46.45)
         XCTAssertEqual(color.b, 72.04)

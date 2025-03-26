@@ -6,12 +6,16 @@
 //  Copyright © 2020 BorisEmorine. All rights reserved.
 //
 
+#if os(macOS) && !targetEnvironment(macCatalyst)
+import AppKit
+#elseif os(iOS) || os(visionOS)
 import UIKit
+#endif
 import CoreImage
 
 
-extension UIImage {
-    
+extension PlatformImage {
+
     enum ImageColorError: Error {
         /// The `CIImage` instance could not be created.
         case ciImageFailure
@@ -38,10 +42,10 @@ extension UIImage {
             }
         }
     }
-    
+
     /// Computes the average color of the image.
-    public func averageColor() throws -> UIColor {
-        guard let ciImage = CIImage(image: self) else {
+    public func averageColor() throws -> PlatformColor {
+        guard let ciImage = self.ciImage else {
             throw ImageColorError.ciImageFailure
         }
         
@@ -61,7 +65,7 @@ extension UIImage {
         
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: CIFormat.RGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
 
-        let averageColor = UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
+        let averageColor = PlatformColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
         
         return averageColor
     }

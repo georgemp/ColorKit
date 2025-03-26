@@ -12,8 +12,8 @@ import XCTest
 class CMYKTests: XCTestCase {
 
     func testGreen() {
-        let color = UIColor.green
-        
+        let color = PlatformColor.green
+
         XCTAssertEqual(color.cyan, 1.0)
         XCTAssertEqual(color.magenta, 0.0)
         XCTAssertEqual(color.yellow, 1.0)
@@ -21,8 +21,8 @@ class CMYKTests: XCTestCase {
     }
     
     func testBlue() {
-        let color = UIColor.blue
-        
+        let color = PlatformColor.blue
+
         XCTAssertEqual(color.cyan, 1.0)
         XCTAssertEqual(color.magenta, 1.0)
         XCTAssertEqual(color.yellow, 0.0)
@@ -30,8 +30,8 @@ class CMYKTests: XCTestCase {
     }
     
     func testWhite() {
-        let color = UIColor.white
-        
+        let color = PlatformColor.white
+
         XCTAssertEqual(color.cyan, 0.0)
         XCTAssertEqual(color.magenta, 0.0)
         XCTAssertEqual(color.yellow, 0.0)
@@ -39,7 +39,7 @@ class CMYKTests: XCTestCase {
     }
     
     func testArbitrary() {
-        let color = UIColor(red: 153.0 / 255.0, green: 71.0 / 255.0, blue: 206.0 / 255.0, alpha: 1.0)
+        let color = PlatformColor(red: 153.0 / 255.0, green: 71.0 / 255.0, blue: 206.0 / 255.0, alpha: 1.0)
         
         XCTAssertEqual(color.cyan, 0.26, accuracy: 0.01)
         XCTAssertEqual(color.magenta, 0.66, accuracy: 0.01)
